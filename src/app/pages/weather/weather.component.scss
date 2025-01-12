@@ -1,220 +1,252 @@
 .weather-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    gap: 30px;
-    background: url('/assets/background-image.jpg') no-repeat center center/cover;
-  }
-  
-  .weather-card {
-    background: rgba(0, 0, 64, 0.85);
-    border-radius: 15px;
-    padding: 30px;
-    text-align: center;
-    color: #fff;
-    width: 360px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  }
-  
-  .task-title {
-    font-size: 1.2rem;
-    margin-bottom: 10px;
-    color: #fff;
-  }
-  
-  .main-title {
-    font-size: 2rem;
-    margin-bottom: 5px;
-    color: #fff;
-  }
-  
-  .subtitle {
-    font-size: 0.9rem;
-    color: #fff;
-    margin-bottom: 20px;
-  }
-  
-  .input-field {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 1rem;
-  }
-  
-  .button-group {
-    display: flex;
-    justify-content: space-between;
-  }
-  
-  .button {
-    width: 48%;
-    padding: 10px;
-    font-size: 0.9rem;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  .search-btn {
-    background-color: #007bff;
-    color: white;
-  }
-  
-  .location-btn {
-    background-color: #28a745;
-    color: white;
-  }
-  
-  .weather-card-display {
-    margin-top: 20px;
-  }
-  
-  .weather-main-card {
-    background: rgba(255, 255, 255, 1);
-    border-radius: 10px;
-    padding: 20px;
-    margin-bottom: 20px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-  }
-  
-  .city-name {
-    font-size: 1.8rem;
-    font-weight: bold;
-    margin-bottom: 10px;
-  }
-  
-  .weather-summary {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .weather-icon {
-    width: 60px;
-    height: 60px;
-    margin-right: 10px;
-  }
-  
-  .temp-value {
-    font-size: 1.8rem;
-    font-weight: bold;
-    color: #fff;
-  }
-  
-  .weather-description {
-    color: #fff;
-    margin-top: 5px;
-  }
-  
-  .weather-detail-card {
-    background: rgba(240, 240, 240, 0.9);
-    border-radius: 10px;
-    padding: 15px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-  }
-  
-  .switch-unit {
-    margin-top: 15px;
-    font-size: 0.9rem;
-    color: #007bff;
-    cursor: pointer;
-  }
-  .forecast-container {
-    margin-top: 20px;
-    background: rgba(0, 0, 64, 0.85); /* Darker background for better contrast */
-    border-radius: 15px;
-    padding: 20px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-    color: #fff;
-    width: 100%;
-  }
-  
-  .forecast-title {
-    font-size: 1.8rem;
-    font-weight: bold;
-    text-align: center;
-    margin-bottom: 20px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
-    padding-bottom: 10px;
-  }
-  
-  .forecast-cards {
-    display: flex; /* Arrange cards in a row */
-    justify-content: space-between; /* Distribute cards evenly */
-    gap: 20px; /* Space between cards */
-  }
-  
-  .forecast-card {
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 15px;
-    padding: 15px;
-    text-align: center;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-    flex: 1; /* Equal width for all cards */
-    max-width: 300px; /* Limit card width for uniformity */
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  
-    &:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
-    }
-  }
-  
-  .forecast-card h3 {
-    font-size: 1.4rem;
-    font-weight: bold;
-    margin-bottom: 15px;
-    color: #fff;
-  }
-  
-  .forecast-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: 10px 0;
-  }
-  
-  .forecast-row img {
-    width: 40px;
-    height: 40px;
-  }
-  
-  .forecast-row p {
-    margin: 0;
-    font-size: 1rem;
-    color: #fff;
-  } 
-  @media (max-width: 768px) {
-    .forecast-container {
-      padding: 15px;
-    }
-  
-    .forecast-cards {
-        flex-direction: column;
-      gap: 15px;
-    }
-  
-    .forecast-card {
-      padding: 10px;
-    }
-  
-    .forecast-card h3 {
-      font-size: 1.2rem;
-    }
-  
-    .forecast-row p {
-      font-size: 0.9rem;
-    }
-  }
-  
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  gap: 30px;
+  background: url('/assets/background-image.jpg') no-repeat center center;
+  background-size: cover;
+  padding: 20px;
+  font-family: 'Arial', sans-serif;
+}
 
-  .loading-spinner {
-    display: flex;
-    justify-content: center;
+/* Main container for the weather and forecast cards */
+.weather-forecast-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch; /* Ensures both cards have equal height */
+  gap: 20px;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  flex-wrap: wrap; /* Ensures wrapping on smaller screens */
+}
+
+/* Individual card containers */
+.weather-card-container,
+.forecast-card-container {
+  flex: 1;
+  max-width: 48%;
+  min-width: 300px;
+  padding: 10px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Card styling */
+.weather-card,
+.forecast-container {
+  width: 100%;
+  height: 100%; /* Ensures both cards fill the container */
+  background: #ffffff;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  color: #1e3a5f;
+  padding: 25px;
+  box-sizing: border-box;
+}
+
+/* Task title and main title styling */
+.task-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.main-title {
+  font-size: 2.2rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #1e3a5f;
+}
+
+.subtitle {
+  font-size: 1rem;
+  color: #6c757d;
+  margin-bottom: 20px;
+}
+
+/* Ensures equal height for all forecast cards */
+.forecast-card {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  height: 100%; /* Makes forecast cards fill available height */
+  box-sizing: border-box;
+}
+
+/* Hover effect for forecast cards */
+.forecast-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+}
+
+/* Title styling */
+.forecast-card h3 {
+  font-size: 1.4rem;
+  font-weight: bold;
+  margin-bottom: 15px;
+  color: #1e3a5f;
+}
+
+/* Forecast row for morning, afternoon, and evening */
+.forecast-row {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 10px;
+  padding: 10px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.forecast-item {
+  text-align: center;
+}
+
+.forecast-item p {
+  margin: 5px 0;
+  font-size: 1rem;
+  color: #1e3a5f;
+  font-weight: bold;
+}
+
+.weather-icon {
+  width: 50px;
+  height: 50px;
+  margin: 5px 0;
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 768px) {
+  .weather-forecast-container {
+    flex-direction: column; /* Stacks the cards vertically */
     align-items: center;
-    margin-top: 15px;
   }
-  
+
+  .weather-card-container,
+  .forecast-card-container {
+    max-width: 100%; /* Cards take full width on smaller screens */
+  }
+
+  .button-group {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .button {
+    width: 100%;
+  }
+
+  .forecast-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .forecast-card {
+    min-height: 180px;
+  }
+}
+
+/* Input and button styling */
+.input-field {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+
+.button-group {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.button {
+  width: 48%;
+  padding: 12px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease;
+}
+
+.search-btn {
+  background-color: #007bff;
+  color: white;
+}
+
+.search-btn:hover {
+  background-color: #0056b3;
+}
+
+.location-btn {
+  background-color: #28a745;
+  color: white;
+}
+
+.location-btn:hover {
+  background-color: #218838;
+}
+
+.weather-card-display {
+  margin-top: 20px;
+}
+
+.city-name {
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #1e3a5f;
+}
+
+.weather-summary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.temp-value {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #1e3a5f;
+}
+
+.weather-description {
+  font-size: 1.2rem;
+  color: #6c757d;
+}
+
+.weather-details {
+  background: #f8f9fa;
+  border-radius: 10px;
+  padding: 15px;
+  text-align: left;
+  margin-top: 20px;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #1e3a5f;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.switch-unit {
+  margin-top: 20px;
+  font-size: 0.9rem;
+  color: #007bff;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: underline;
+}
