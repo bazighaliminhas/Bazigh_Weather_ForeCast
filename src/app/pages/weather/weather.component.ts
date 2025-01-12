@@ -12,10 +12,41 @@ export class WeatherComponent implements OnInit {
   weatherData: any = null; // Stores the current weather data
   threeDayForecast: any[] = []; // Stores the 3-day weather forecast data
   loading: boolean = false; // Loading spinner state
+  isCelsius: boolean = true; // Track if temperature is in Celsius
 
   constructor(private weatherService: WeatherService) {}
 
   ngOnInit(): void {}
+
+  /**
+   * Toggles the temperature unit between Celsius and Fahrenheit.
+   */
+  toggleTemperatureUnit(): void {
+    this.isCelsius = !this.isCelsius;
+    if (this.weatherData) {
+      this.weatherData.main.temp = this.convertTemperature(this.weatherData.main.temp);
+      this.weatherData.main.feels_like = this.convertTemperature(this.weatherData.main.feels_like);
+
+      // Update the forecast temperatures
+      this.threeDayForecast = this.threeDayForecast.map((day) => ({
+        ...day,
+        morning: this.convertTemperature(day.morning),
+        afternoon: this.convertTemperature(day.afternoon),
+        evening: this.convertTemperature(day.evening),
+      }));
+    }
+  }
+
+  /**
+   * Converts the temperature between Celsius and Fahrenheit and limits decimal places.
+   * @param temp Temperature value to be converted
+   * @returns Converted temperature as a string with 2 decimal places
+   */
+  convertTemperature(temp: number): number {
+    return this.isCelsius
+      ? parseFloat((((temp - 32) * 5) / 9).toFixed(2)) // Fahrenheit to Celsius, 2 decimal places
+      : parseFloat(((temp * 9) / 5 + 32).toFixed(2));  // Celsius to Fahrenheit, 2 decimal places
+  }
 
   /**
    * Fetches weather data based on the entered city name.
@@ -93,9 +124,9 @@ export class WeatherComponent implements OnInit {
           .slice(0, 3)
           .map(([date, values]: any) => ({
             date,
-            morning: values[0]?.main.temp || null,
-            afternoon: values[3]?.main.temp || null,
-            evening: values[6]?.main.temp || null,
+            morning: values[0]?.main.temp ? parseFloat(values[0].main.temp.toFixed(2)) : null,
+            afternoon: values[3]?.main.temp ? parseFloat(values[3].main.temp.toFixed(2)) : null,
+            evening: values[6]?.main.temp ? parseFloat(values[6].main.temp.toFixed(2)) : null,
             iconMorning: values[0]?.weather[0]?.icon || null,
             iconAfternoon: values[3]?.weather[0]?.icon || null,
             iconEvening: values[6]?.weather[0]?.icon || null,

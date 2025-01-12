@@ -1,92 +1,112 @@
-<div class="weather-forecast-container">
-  <!-- Weather card -->
-  <div class="weather-card-container">
-    <div class="weather-card">
-      <h2 class="task-title">Bazigh's Demo Task</h2>
-      <h1 class="main-title">Weather Forecast</h1>
-      <p class="subtitle">Get the latest weather updates for your city</p>
+<div class="weather-container">
+  <div class="weather-center-wrapper">
+    <!-- Weather card -->
+    <div class="weather-card-container">
+      <div class="weather-card">
+        <h2 class="task-title">Bazigh's Demo Task</h2>
+        <h1 class="main-title">Weather Forecast</h1>
+        <p class="subtitle">Get the latest weather updates for your city</p>
 
-      <!-- Input for City Name -->
-      <input
-        type="text"
-        placeholder="Enter city name"
-        [(ngModel)]="cityName"
-        class="input-field"
-      />
+        <!-- Input for City Name -->
+        <input
+          type="text"
+          placeholder="Enter city name"
+          [(ngModel)]="cityName"
+          class="input-field"
+        />
 
-      <!-- Buttons -->
-      <div class="button-group">
-        <button class="button search-btn" (click)="getWeatherByCity()">Search</button>
-        <button class="button location-btn" (click)="useMyLocation()">Use My Location</button>
-      </div>
-
-      <!-- Loading Spinner -->
-      <div *ngIf="loading" class="loading-spinner">
-        <mat-spinner diameter="40"></mat-spinner>
-      </div>
-
-      <!-- Current Weather Data -->
-      <div *ngIf="weatherData" class="weather-card-display">
-        <h3 class="city-name">{{ weatherData.name }}</h3>
-        <div class="weather-summary">
-          <img
-            [src]="'https://openweathermap.org/img/wn/' + weatherData.weather[0].icon + '@2x.png'"
-            alt="Weather Icon"
-            class="weather-icon"
-          />
-          <div class="temperature">
-            <h2 class="temp-value">{{ weatherData.main.temp }}°C</h2>
-            <p class="weather-description">{{ weatherData.weather[0].description | titlecase }}</p>
-          </div>
+        <!-- Buttons -->
+        <div class="button-group">
+          <button class="button search-btn" (click)="getWeatherByCity()">Search</button>
+          <button class="button location-btn" (click)="useMyLocation()">Use My Location</button>
         </div>
-        <div class="weather-details">
-          <p><strong>Feels like:</strong> {{ weatherData.main.feels_like }}°C</p>
-          <p><strong>Humidity:</strong> {{ weatherData.main.humidity }}%</p>
-          <p><strong>Pressure:</strong> {{ weatherData.main.pressure }} hPa</p>
+
+        <!-- Loading Spinner -->
+        <div *ngIf="loading" class="loading-spinner-container">
+          <mat-spinner diameter="40"></mat-spinner>
+        </div>
+
+        <!-- Current Weather Data -->
+        <div *ngIf="weatherData" class="weather-card-display">
+          <h3 class="city-name">{{ weatherData.name }}</h3>
+          <div class="weather-summary">
+            <img
+              [src]="'https://openweathermap.org/img/wn/' + weatherData.weather[0].icon + '@2x.png'"
+              alt="Weather Icon"
+              class="weather-icon"
+            />
+            <div class="temperature">
+              <!-- Display temperature with 2 decimal places and correct unit -->
+              <h2 class="temp-value">
+                {{ weatherData.main.temp.toFixed(2) }}°{{ isCelsius ? 'C' : 'F' }}
+              </h2>
+              <p class="weather-description">
+                {{ weatherData.weather[0].description | titlecase }}
+              </p>
+            </div>
+          </div>
+          <div class="weather-details">
+            <p>
+              <strong>Feels like:</strong>
+              {{ weatherData.main.feels_like.toFixed(2) }}°{{ isCelsius ? 'C' : 'F' }}
+            </p>
+            <p><strong>Humidity:</strong> {{ weatherData.main.humidity }}%</p>
+            <p><strong>Pressure:</strong> {{ weatherData.main.pressure }} hPa</p>
+          </div>
+
+          <div class="switch-unit" (click)="toggleTemperatureUnit()">
+            Switch to {{ isCelsius ? 'Fahrenheit' : 'Celsius' }}
+          </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <!-- Forecast card -->
-  <div class="forecast-card-container">
-    <div class="card">
-      <!-- 3-Day Forecast -->
-      <div *ngIf="threeDayForecast.length" class="forecast-container">
-        <h2>3-Day Forecast</h2>
-        <div class="forecast-cards">
-          <div *ngFor="let day of threeDayForecast" class="forecast-card">
-            <h3>{{ day.date }}</h3>
-            <div class="forecast-row">
-              <div class="forecast-item">
-                <p>Morning</p>
-                <img
-                  *ngIf="day.iconMorning"
-                  [src]="'https://openweathermap.org/img/wn/' + day.iconMorning + '@2x.png'"
-                  alt="Morning Weather"
-                  class="weather-icon"
-                />
-                <p>{{ day.morning ? day.morning + '°C' : 'not available' }}</p>
-              </div>
-              <div class="forecast-item">
-                <p>Afternoon</p>
-                <img
-                  *ngIf="day.iconAfternoon"
-                  [src]="'https://openweathermap.org/img/wn/' + day.iconAfternoon + '@2x.png'"
-                  alt="Afternoon Weather"
-                  class="weather-icon"
-                />
-                <p>{{ day.afternoon ? day.afternoon + '°C' : 'not available' }}</p>
-              </div>
-              <div class="forecast-item">
-                <p>Evening</p>
-                <img
-                  *ngIf="day.iconEvening"
-                  [src]="'https://openweathermap.org/img/wn/' + day.iconEvening + '@2x.png'"
-                  alt="Evening Weather"
-                  class="weather-icon"
-                />
-                <p>{{ day.evening ? day.evening + '°C' : 'not available' }}</p>
+    <!-- Forecast card -->
+    <div class="forecast-card-container" *ngIf="weatherData">
+      <div class="card">
+        <!-- 3-Day Forecast -->
+        <div *ngIf="threeDayForecast.length" class="forecast-container">
+          <h2>3-Day Forecast</h2>
+          <div class="forecast-cards">
+            <div *ngFor="let day of threeDayForecast" class="forecast-card">
+              <h3>{{ day.date }}</h3>
+              <div class="forecast-row">
+                <div class="forecast-item">
+                  <p>Morning</p>
+                  <img
+                    *ngIf="day.iconMorning"
+                    [src]="'https://openweathermap.org/img/wn/' + day.iconMorning + '@2x.png'"
+                    alt="Morning Weather"
+                    class="weather-icon"
+                  />
+                  <p>
+                    {{ day.morning ? day.morning.toFixed(2) + '°' + (isCelsius ? 'C' : 'F') : 'not available' }}
+                  </p>
+                </div>
+                <div class="forecast-item">
+                  <p>Afternoon</p>
+                  <img
+                    *ngIf="day.iconAfternoon"
+                    [src]="'https://openweathermap.org/img/wn/' + day.iconAfternoon + '@2x.png'"
+                    alt="Afternoon Weather"
+                    class="weather-icon"
+                  />
+                  <p>
+                    {{ day.afternoon ? day.afternoon.toFixed(2) + '°' + (isCelsius ? 'C' : 'F') : 'not available' }}
+                  </p>
+                </div>
+                <div class="forecast-item">
+                  <p>Evening</p>
+                  <img
+                    *ngIf="day.iconEvening"
+                    [src]="'https://openweathermap.org/img/wn/' + day.iconEvening + '@2x.png'"
+                    alt="Evening Weather"
+                    class="weather-icon"
+                  />
+                  <p>
+                    {{ day.evening ? day.evening.toFixed(2) + '°' + (isCelsius ? 'C' : 'F') : 'not available' }}
+                  </p>
+                </div>
               </div>
             </div>
           </div>
