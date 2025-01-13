@@ -31,6 +31,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  width: 100%; /* Ensure both cards have the same width */
 }
 
 /* Card styling */
@@ -132,16 +133,20 @@
   .weather-card-container,
   .forecast-card-container {
     max-width: 100%; /* Cards take full width on smaller screens */
+    width: 100%; /* Ensure consistent width */
   }
 
   .button-group {
-    flex-direction: column; /* Stack buttons vertically */
-    align-items: center;
-    gap: 15px; /* Add spacing between buttons */
+    flex-direction: row; /* Keep buttons side by side */
+    justify-content: space-between; /* Spread buttons evenly */
+    width: 100%;
+    gap: 10px;
   }
 
   .button {
-    width: 90%; /* Make buttons span most of the container */
+    flex: 1; /* Make buttons take equal space */
+    width: 48%; /* Ensure buttons are 48% of container width */
+    max-width: none;
   }
 }
 
@@ -159,15 +164,13 @@
 .button-group {
   display: flex;
   justify-content: center; /* Center buttons horizontally */
-  flex-wrap: wrap;
-  gap: 15px; /* Space between buttons */
-  margin-top: 15px;
+  gap: 10px; /* Add space between buttons */
+  margin-top: 20px;
+  flex-wrap: wrap; /* Allow wrapping of buttons */
 }
 
 .button {
-  width: 100%; /* Full width on smaller screens */
-  max-width: 200px; /* Limit button width on larger screens */
-  padding: 12px;
+  padding: 12px 20px;
   font-size: 1rem;
   border: none;
   border-radius: 8px;
@@ -175,6 +178,9 @@
   font-weight: bold;
   box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
   transition: background-color 0.3s ease, transform 0.3s ease;
+  width: auto;
+  min-width: 248px; /* Increase minimum width for consistency */
+  text-align: center;
 }
 
 .button:hover {
@@ -260,13 +266,32 @@
   color: #0056b3;
 }
 
-
-
-
 /* Loading spinner styling */
 .loading-spinner-container {
   display: flex;
   justify-content: center;
   align-items: center;
+
+  margin-top: 30px;
   height: 100%; /* Takes full height of the card */
+}
+
+.switch-unit {
+  margin: 20px auto 0; /* Centers the button horizontally */
+  padding: 10px 20px;
+  font-size: 1rem;
+  color: #007bff;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  border: 1px solid #007bff;
+  border-radius: 8px;
+  display: block;
+  width: fit-content; /* Ensures the button width fits its content */
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.switch-unit:hover {
+  background-color: #007bff;
+  color: white;
 }
