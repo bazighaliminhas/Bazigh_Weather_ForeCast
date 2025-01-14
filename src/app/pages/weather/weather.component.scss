@@ -9,18 +9,16 @@
   font-family: 'Arial', sans-serif;
 }
 
-/* Center wrapper to hold both cards */
 .weather-center-wrapper {
   display: flex;
   justify-content: center;
-  align-items: stretch; /* Ensures both cards have the same height */
+  align-items: stretch;
   gap: 20px;
   width: 100%;
   max-width: 1200px;
-  flex-wrap: wrap; /* Stacks cards on smaller screens */
+  flex-wrap: wrap;
 }
 
-/* Individual card containers */
 .weather-card-container,
 .forecast-card-container {
   flex: 1;
@@ -31,13 +29,12 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 100%; /* Ensure both cards have the same width */
+  width: 100%;
 }
 
-/* Card styling */
 .weather-card,
 .forecast-container {
-  flex: 1; /* Ensures equal height */
+  flex: 1; 
   background: #ffffff;
   border-radius: 15px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
@@ -46,10 +43,9 @@
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  justify-content: space-between; /* Ensures even spacing */
+  justify-content: space-between; 
 }
 
-/* Task title and main title styling */
 .task-title {
   font-size: 1.5rem;
   font-weight: bold;
@@ -69,7 +65,6 @@
   margin-bottom: 20px;
 }
 
-/* Ensures equal height for all forecast cards */
 .forecast-card {
   background: rgba(255, 255, 255, 0.1);
   border-radius: 10px;
@@ -82,13 +77,11 @@
   margin-bottom: 15px;
 }
 
-/* Hover effect for forecast cards */
 .forecast-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
 }
 
-/* Title styling */
 .forecast-card h3 {
   font-size: 1.4rem;
   font-weight: bold;
@@ -96,7 +89,6 @@
   color: #1e3a5f;
 }
 
-/* Forecast row for morning, afternoon, and evening */
 .forecast-row {
   display: flex;
   justify-content: space-around;
@@ -123,34 +115,32 @@
   margin: 5px 0;
 }
 
-/* Responsive design for smaller screens */
 @media (max-width: 768px) {
   .weather-center-wrapper {
-    flex-direction: column; /* Stacks the cards vertically */
+    flex-direction: column; 
     align-items: center;
   }
 
   .weather-card-container,
   .forecast-card-container {
-    max-width: 100%; /* Cards take full width on smaller screens */
-    width: 100%; /* Ensure consistent width */
+    max-width: 100%;
+    width: 100%;
   }
 
   .button-group {
-    flex-direction: row; /* Keep buttons side by side */
-    justify-content: space-between; /* Spread buttons evenly */
+    flex-direction: row; 
+    justify-content: space-between; 
     width: 100%;
     gap: 10px;
   }
 
   .button {
-    flex: 1; /* Make buttons take equal space */
-    width: 48%; /* Ensure buttons are 48% of container width */
+    flex: 1; 
+    width: 48%;
     max-width: none;
   }
 }
 
-/* Input and button styling */
 .input-field {
   width: 100%;
   padding: 12px;
@@ -163,10 +153,10 @@
 
 .button-group {
   display: flex;
-  justify-content: center; /* Center buttons horizontally */
-  gap: 10px; /* Add space between buttons */
+  justify-content: center; 
+  gap: 10px; 
   margin-top: 20px;
-  flex-wrap: wrap; /* Allow wrapping of buttons */
+  flex-wrap: wrap;
 }
 
 .button {
@@ -179,12 +169,12 @@
   box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
   transition: background-color 0.3s ease, transform 0.3s ease;
   width: auto;
-  min-width: 248px; /* Increase minimum width for consistency */
+  min-width: 248px; 
   text-align: center;
 }
 
 .button:hover {
-  transform: translateY(-2px); /* Subtle hover effect */
+  transform: translateY(-2px); 
 }
 
 .search-btn {
@@ -251,7 +241,6 @@
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
-/* Switch unit button styling */
 .switch-unit {
   margin-top: 20px;
   font-size: 0.9rem;
@@ -266,18 +255,18 @@
   color: #0056b3;
 }
 
-/* Loading spinner styling */
+/* Loading spinne */
 .loading-spinner-container {
   display: flex;
   justify-content: center;
   align-items: center;
 
   margin-top: 30px;
-  height: 100%; /* Takes full height of the card */
+  height: 100%;
 }
 
 .switch-unit {
-  margin: 20px auto 0; /* Centers the button horizontally */
+  margin: 20px auto 0; 
   padding: 10px 20px;
   font-size: 1rem;
   color: #007bff;
@@ -287,7 +276,7 @@
   border: 1px solid #007bff;
   border-radius: 8px;
   display: block;
-  width: fit-content; /* Ensures the button width fits its content */
+  width: fit-content;
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
